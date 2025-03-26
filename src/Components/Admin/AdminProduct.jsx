@@ -1,24 +1,22 @@
 import React from "react";
 
-export function Product(props) {
+export function AdminProduct(props) {
   let { product } = props;
-
-  function handleAddtoCartButtonClick() {
-    props.onAddToCart(product);
-  }
-
-  function handlePlusClick() {
-    props.onPlusClick(product);
-  }
-
-  function handleMinusClick() {
-    props.onMinusClick(product);
-  }
 
   // Calculate discounted price
   const discountedPrice = product.mrp - (product.mrp * product.discount) / 100;
-  const mrp = Number(product.mrp) || 0; // Fallback to 0 if undefined or null
+  // Removed redundant price variable
 
+  function handleEditClick() {
+    props.onEditProduct(product);
+  }
+  function handleDeleteClick() {
+    let confirmDelete = window.confirm(
+      `Are you sure you want to delete ${product.name}?`
+    );
+    if (!confirmDelete) return;
+    props.onDeleteProduct(product);
+  }
   return (
     <div className="card h-100 shadow-sm border-0 product-card">
       {/* Discount badge */}
@@ -62,49 +60,27 @@ export function Product(props) {
           </h5>
           {product.discount > 0 && (
             <small className="text-muted text-decoration-line-through ms-2">
-              ₹{mrp.toFixed(2)}
+              ₹{Number(product.mrp).toFixed(2)}
             </small>
           )}
         </div>
-
-        {/* Stock status */}
-        {/* {!product.inStock && (
-          <div className="mb-2">
-            <span className="badge bg-secondary">Out of Stock</span>
-          </div>
-        )} */}
-
         {/* Add to cart button or quantity controls */}
         <div className="mt-auto">
-          {product.qty == 0 && (
+          <div className="d-flex justify-content-around align-items-center quantity-controls">
             <button
-              className={`btn ${
-                product.inStock ? "btn-danger" : "btn-secondary"
-              } w-100 py-2`}
-              onClick={handleAddtoCartButtonClick}
-              disabled={!product.inStock}
+              className="btn btn-outline-danger rounded-circle quantity-btn "
+              onClick={handleEditClick}
             >
-              {product.inStock ? "Add to Cart" : "Out of Stock"}
+              <i class="bi bi-pencil-square"></i>
             </button>
-          )}
 
-          {product.qty != 0 && (
-            <div className="d-flex justify-content-between align-items-center quantity-controls">
-              <button
-                className="btn btn-outline-danger rounded-circle quantity-btn"
-                onClick={handleMinusClick}
-              >
-                <i className="bi bi-dash"></i>
-              </button>
-              <span className="fw-bold mx-3">{product.qty}</span>
-              <button
-                className="btn btn-outline-danger rounded-circle quantity-btn"
-                onClick={handlePlusClick}
-              >
-                <i className="bi bi-plus"></i>
-              </button>
-            </div>
-          )}
+            <button
+              className="btn btn-outline-danger rounded-circle quantity-btn "
+              onClick={handleDeleteClick}
+            >
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
         </div>
       </div>
     </div>

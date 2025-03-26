@@ -1,0 +1,67 @@
+/* Signup.css */
+
+/* Import Bootstrap Icons */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css");
+
+.card {
+  transition: transform 0.3s;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-header {
+  border-bottom: none;
+  background: linear-gradient(135deg, #007bff, #0056b3);
+}
+
+.input-group-text {
+  background-color: #f8f9fa;
+  border-right: none;
+}
+
+.form-control {
+  border-left: none;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: #ced4da;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  border: none;
+  transition: all 0.3s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .card-body {
+    padding: 1.5rem;
+  }
+
+  .btn-lg {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+}
+
+/* Animation for inputs on focus */
+.form-control:focus + .input-group-text,
+.input-group-text + .form-control:focus {
+  border-color: #80bdff;
+}
+
+/* Custom text selection color */
+::selection {
+  background-color: #007bff;
+  color: white;
+}
