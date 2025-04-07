@@ -7,220 +7,8 @@ import { CartProductPage } from "./Card/CartProductPage";
 import axios from "axios";
 import { AdminPage } from "./Admin/AdminPage";
 import AddProductForm from "./Admin/AddProductForm";
-import { json } from "server/reply";
 
 export function Ecomm() {
-  // let pList = [
-  //   {
-  //     id: "1",
-  //     name: "Grapes",
-  //     image: "grapes.jpg",
-  //     unit: "kg",
-  //     mrp: 120,
-  //     discount: 10,
-  //     inStock: false,
-  //     qty: 0,
-  //     type: "Organic",
-  //   },
-  //   {
-  //     id: "2",
-  //     name: "Mango",
-  //     image: "mango.jpg",
-  //     unit: "doz",
-  //     mrp: 500,
-  //     discount: 8,
-  //     inStock: true,
-  //     qty: 0,
-  //     type: "Organic",
-  //   },
-  //   {
-  //     id: "3",
-  //     name: "Banana",
-  //     image: "banana.jpg",
-  //     unit: "doz",
-  //     mrp: 60,
-  //     discount: 0,
-  //     inStock: true,
-  //     qty: 0,
-  //     type: "Non-Organic",
-  //   },
-  //   {
-  //     id: "4",
-  //     name: "Apple",
-  //     image: "apple.jpg",
-  //     unit: "kg",
-  //     mrp: 180,
-  //     discount: 7,
-  //     inStock: true,
-  //     qty: 0,
-  //     type: "Non-Organic",
-  //   },
-  //   {
-  //     id: "5",
-  //     name: "Anjeer",
-  //     image: "anjeer.jpg",
-  //     unit: "kg",
-  //     mrp: 100,
-  //     discount: 0,
-  //     inStock: true,
-  //     qty: 0,
-  //     type: "Organic",
-  //   },
-  //   {
-  //     id: "6",
-  //     name: "Strawberry",
-  //     image: "strawberry.jpg",
-  //     unit: "kg",
-  //     mrp: 200,
-  //     discount: 20,
-  //     inStock: true,
-  //     qty: 0,
-  //     type: "Non-Organic",
-  //   },
-  //   {
-  //     id: "7",
-  //     name: "Papaya",
-  //     image: "papaya.jpg",
-  //     unit: "kg",
-  //     mrp: 50,
-  //     discount: 15,
-  //     inStock: true,
-  //     qty: 0,
-  //     type: "Organic",
-  //   },
-  //   {
-  //     id: "8",
-  //     name: "Cherry",
-  //     image: "cherry.jpg",
-  //     unit: "kg",
-  //     mrp: 300,
-  //     discount: 5,
-  //     inStock: true,
-  //     qty: 0,
-  //     type: "Non-Organic",
-  //   },
-  //   {
-  //     id: "9",
-  //     name: "Chikoo",
-  //     image: "Chikoo.jpg",
-  //     unit: "kg",
-  //     mrp: 60,
-  //     discount: 5,
-  //     inStock: false,
-  //     qty: 0,
-  //     type: "Organic",
-  //   },
-  //   {
-  //     id: "10",
-  //     name: "Kiwi",
-  //     image: "Kiwi.jpg",
-  //     unit: "piece",
-  //     mrp: 20,
-  //     discount: 0,
-  //     inStock: false,
-  //     qty: 0,
-  //     type: "Non-Organic",
-  //   },
-  //   {
-  //     id: "11",
-  //     name: "Orange",
-  //     image: "orange.jpg",
-  //     unit: "kg",
-  //     mrp: 200,
-  //     discount: 10,
-  //     inStock: true,
-  //     qty: 0,
-  //     type: "Non-Organic",
-  //   },
-  //   {
-  //     id: "12",
-  //     name: "Pear",
-  //     image: "pear.jpg",
-  //     unit: "kg",
-  //     mrp: 200,
-  //     discount: 7,
-  //     inStock: true,
-  //     qty: 0,
-  //     type: "Non-Organic",
-  //   },
-  //   {
-  //     id: "13",
-  //     name: "Pineapple",
-  //     image: "pineapple.jpg",
-  //     unit: "piece",
-  //     mrp: 100,
-  //     discount: 50,
-  //     inStock: true,
-  //     qty: 0,
-  //     type: "Non-Organic",
-  //   },
-  //   {
-  //     id: "14",
-  //     name: "Pomegranete",
-  //     image: "pomegranete.jpg",
-  //     unit: "kg",
-  //     mrp: 200,
-  //     discount: 5,
-  //     inStock: true,
-  //     qty: 0,
-  //     type: "Non-Organic",
-  //   },
-  //   {
-  //     id: "15",
-  //     name: "Sitaphal",
-  //     image: "sitaphal.jpg",
-  //     unit: "kg",
-  //     mrp: 100,
-  //     discount: 10,
-  //     inStock: true,
-  //     qty: 0,
-  //     type: "Organic",
-  //   },
-  //   {
-  //     id: "16",
-  //     name: "Watermelon",
-  //     image: "watermelon.jpg",
-  //     unit: "piece",
-  //     mrp: 80,
-  //     discount: 50,
-  //     inStock: true,
-  //     qty: 0,
-  //     type: "Organic",
-  //   },
-  //   {
-  //     id: "17",
-  //     name: "Sweetlime",
-  //     image: "sweetlime.jpg",
-  //     unit: "kg",
-  //     mrp: 200,
-  //     discount: 5,
-  //     inStock: true,
-  //     qty: 0,
-  //     type: "Non-Organic",
-  //   },
-  //   {
-  //     id: "18",
-  //     name: "Peach",
-  //     image: "peach.jpg",
-  //     unit: "kg",
-  //     mrp: 200,
-  //     discount: 10,
-  //     inStock: false,
-  //     qty: 0,
-  //     type: "Non-Organic",
-  //   },
-  //   {
-  //     id: "19",
-  //     name: "Dragon",
-  //     image: "dragon.jpg",
-  //     unit: "piece",
-  //     mrp: 60,
-  //     discount: 0,
-  //     inStock: true,
-  //     qty: 0,
-  //     type: "Non-Organic",
-  //   },
-  // ];
   let [list, setList] = useState([]);
   let [view, setView] = useState("products");
   let [validUser, setValidUser] = useState("");
@@ -230,92 +18,169 @@ export function Ecomm() {
 
   useEffect(() => {
     console.log("getting data from server");
-    getDataFromServer();
-    getLoggedInUser();
-    getCartItems();
+    initialize();
   }, []);
+
+  // Fixed initialization function with proper async handling
+  async function initialize() {
+    try {
+      // First get the logged in user
+      await getLoggedInUser();
+
+      // Then get product data from server
+      await getDataFromServer();
+
+      // Finally load cart items once products are loaded
+      await getCartItems();
+    } catch (error) {
+      console.error("Initialization error:", error);
+    }
+  }
 
   async function getDataFromServer() {
     try {
-      let response = await axios.get("http://localhost:3000/fruits");
-      console.log(response.data);
-      let data = await response.data;
-      setList(data);
+      const response = await axios.get("http://localhost:3000/fruits");
+      console.log("Data from server:", response.data);
+      setList(response.data);
+      return response.data; // Return the data for potential chaining
     } catch (error) {
-      console.log(error);
+      console.error("Error fetching data from server:", error);
+      return []; // Return empty array in case of error
     }
   }
 
-  function saveCartItems(cartList) {
-    let cartData = JSON.stringify(cartList);
-    localStorage.setItem("cartItems", cartData);
+  function saveCartItems(cartItems) {
+    try {
+      const cartData = JSON.stringify(cartItems);
+      localStorage.setItem("cartItems", cartData);
+    } catch (error) {
+      console.error("Error saving cart items:", error);
+    }
   }
 
-  function getCartItems() {
-    let cartData = localStorage.getItem("cartItems");
-    let cartItems = JSON.parse(cartData);
-    if (cartItems) {
-      setCartList(cartItems);
-    }
-    let temp = list.map((p) => {
-      let tempCart = cartItems.find((e) => e.id === p.id);
-      if (tempCart) {
-        p.qty = tempCart.qty;
+  async function getCartItems() {
+    try {
+      const cartData = localStorage.getItem("cartItems");
+
+      // Handle empty cart data
+      if (!cartData) {
+        setCartList([]);
+        return;
       }
-      return p;
-    });
 
-    setList(temp);
+      const cartItems = JSON.parse(cartData);
+      setCartList(cartItems || []); // Set cart list to empty array if null
+      console.log("Cart items from local storage:", cartItems);
+
+      // Only update product quantities if we have both products and cart items
+      if (list.length > 0 && cartItems && cartItems.length > 0) {
+        const updatedList = list.map((p) => {
+          const cartItem = cartItems.find((e) => e.id == p.id);
+          if (cartItem) {
+            return { ...p, qty: cartItem.qty };
+          }
+          return { ...p, qty: 0 };
+        });
+
+        setList(updatedList);
+        console.log("Updated product list with quantities:", updatedList);
+      }
+    } catch (error) {
+      console.error("Error getting cart items:", error);
+      setCartList([]);
+    }
   }
 
   function handleAddToCart(product) {
-    let updatedList = list.map((p) => {
-      if (p.id === product.id) {
-        p.qty = 1;
-        let temp = [...cartList, p];
-        setCartList(temp);
-        saveCartItems(temp);
-      }
-      return p;
-    });
-    setList(updatedList);
+    // Use functional updates to ensure we're working with the latest state
+    setList((currentList) =>
+      currentList.map((p) => {
+        if (p.id === product.id) {
+          const updatedProduct = { ...p, qty: 1 };
+
+          // Update cart list
+          const newCartList = [
+            ...cartList.filter((item) => item.id !== p.id),
+            updatedProduct,
+          ];
+          setCartList(newCartList);
+          saveCartItems(newCartList);
+
+          return updatedProduct;
+        }
+        return p;
+      })
+    );
   }
 
   function handlePlusClick(product) {
-    let updatedList = list.map((p) => {
-      if (p.id === product.id) {
-        p.qty = p.qty + 1;
-      }
-      return p;
-    });
-    setList(updatedList);
+    setList((currentList) =>
+      currentList.map((p) => {
+        if (p.id === product.id) {
+          const updatedProduct = { ...p, qty: p.qty + 1 };
+
+          // Update cart list
+          const existingCartItem = cartList.find((item) => item.id === p.id);
+          let newCartList;
+
+          if (existingCartItem) {
+            newCartList = cartList.map((item) =>
+              item.id === p.id ? updatedProduct : item
+            );
+          } else {
+            newCartList = [...cartList, updatedProduct];
+          }
+
+          setCartList(newCartList);
+          saveCartItems(newCartList);
+
+          return updatedProduct;
+        }
+        return p;
+      })
+    );
   }
 
   function handleMinusClick(product) {
-    let updatedList = list.map((p) => {
-      if (p.id === product.id) {
-        p.qty = p.qty - 1;
-        if (p.qty == 0) {
-          let temp = cartList.filter((e) => e.id !== product.id);
-          setCartList(temp);
+    setList((currentList) =>
+      currentList.map((p) => {
+        if (p.id === product.id) {
+          const newQty = Math.max(0, p.qty - 1);
+          const updatedProduct = { ...p, qty: newQty };
+
+          // Update cart list
+          let newCartList;
+
+          if (newQty === 0) {
+            newCartList = cartList.filter((item) => item.id !== p.id);
+          } else {
+            newCartList = cartList.map((item) =>
+              item.id === p.id ? updatedProduct : item
+            );
+          }
+
+          setCartList(newCartList);
+          saveCartItems(newCartList);
+
+          return updatedProduct;
         }
-      }
-      return p;
-    });
-    setList(updatedList);
+        return p;
+      })
+    );
   }
 
   function handleViewChange(view) {
     console.log(`View changed to ${view}`);
     setView(view);
   }
+
   function handleLoginClick(view) {
     console.log(`View changed to ${view}`);
     setView(view);
   }
 
   function handleLoginSuccess(user) {
-    if (user.role == "admin") {
+    if (user.role === "admin") {
       setView("admin");
     } else {
       setView("products");
@@ -326,17 +191,33 @@ export function Ecomm() {
   }
 
   function storeUserLogin(user) {
-    let userDate = JSON.stringify(user);
-
-    localStorage.setItem("loggedInUser", userDate);
+    try {
+      const userData = JSON.stringify(user);
+      localStorage.setItem("loggedInUser", userData);
+    } catch (error) {
+      console.error("Error storing user login:", error);
+    }
   }
 
   async function getLoggedInUser() {
-    let user = localStorage.getItem("loggedInUser");
-    let userData = await JSON.parse(user);
-    console.log("user data fetched from the local server", userData);
-    if (userData) {
-      handleLoginSuccess(userData);
+    try {
+      const userData = localStorage.getItem("loggedInUser");
+
+      if (!userData) {
+        return null;
+      }
+
+      const user = JSON.parse(userData);
+      console.log("User data fetched from local storage:", user);
+
+      if (user) {
+        handleLoginSuccess(user);
+        return user;
+      }
+      return null;
+    } catch (error) {
+      console.error("Error getting logged in user:", error);
+      return null;
     }
   }
 
@@ -346,6 +227,8 @@ export function Ecomm() {
     localStorage.removeItem("loggedInUser");
     localStorage.removeItem("cartItems");
     setCartList([]);
+    // Reset product quantities to 0
+    setList((currentList) => currentList.map((p) => ({ ...p, qty: 0 })));
   }
 
   function handleAddProduct() {
@@ -358,44 +241,47 @@ export function Ecomm() {
     setView("admin");
     setAdminView("add");
   }
+
   function handleEditProduct(product) {
     setAdminProduct(product);
     setAdminView("edit");
     setView("addProduct");
   }
+
   function handleDeleteProduct(product) {
-    let temp = list.filter((p) => p.id !== product.id);
-    setList(temp);
+    let updatedList = axios.delete(
+      `http://localhost:3000/fruits/${product.id}`
+    );
+    setList((currentList) => currentList.filter((p) => p.id !== product.id));
     setView("admin");
   }
+
   function handleProductEditFormSubmit(data) {
-    let temp = list.map((p) => {
-      if ( p.id === data.id ) {
-        return data;
-      } else {
-        return p;
-      }
-    });
+    setList((currentList) =>
+      currentList.map((p) => (p.id === data.id ? data : p))
+    );
     console.log("data edited by admin", data);
-
-    setList(temp);
     setView("admin");
   }
-  function handleProductAddFormSubmit(data) {
-    let temp = [...list, data];
-    console.log("data aadded by admin", data);
 
-    setList(temp);
+  async function handleProductAddFormSubmit() {
+    // setList((currentList) => [...currentList, data]);
+    // console.log("data added by admin", data);
+    let response = await axios.get("http://localhost:3000/fruits");
+    let data = response.data;
+    setList(data);
+    console.log("data added by admin", data);
     setView("admin");
   }
+
   return (
     <div>
       {view === "addProduct" && (
         <>
           <AddProductForm
             onProductListClick={handleProductListClick}
-            adminView={adminView} // Fix: Pass adminView to AddProductForm
-            adminProduct={adminProduct} // Fix: Pass adminProduct to AddProductForm
+            adminView={adminView}
+            adminProduct={adminProduct}
             onProductEditFormSubmit={handleProductEditFormSubmit}
             onProductAddFormSubmit={handleProductAddFormSubmit}
           />
@@ -422,7 +308,7 @@ export function Ecomm() {
       {view === "SignUp" && <Signup onLoginClick={handleLoginClick} />}
       {view === "LogIn" && <Login onLoginSuccess={handleLoginSuccess} />}
 
-      {view === "products" && view != "admin" && (
+      {view === "products" && view !== "admin" && (
         <div>
           <Navbar
             cartList={cartList}
@@ -442,7 +328,6 @@ export function Ecomm() {
 
       {view === "cart" && (
         <>
-          {" "}
           <Navbar
             cartList={cartList}
             validUser={validUser}
@@ -450,7 +335,11 @@ export function Ecomm() {
             onLogOutClick={handleLogOutClick}
             view={view}
           />
-          <CartProductPage cartList={cartList} validUser={validUser} />
+          <CartProductPage
+            cartList={cartList}
+            validUser={validUser}
+            setCartList={setCartList}
+          />
         </>
       )}
     </div>
