@@ -31,7 +31,6 @@ export function Ecomm() {
       await getDataFromServer();
 
       // Finally load cart items once products are loaded
-      await getCartItems();
     } catch (error) {
       console.error("Initialization error:", error);
     }
@@ -39,10 +38,11 @@ export function Ecomm() {
 
   async function getDataFromServer() {
     try {
-      const response = await axios.get("http://localhost:3000/fruits");
+      let response = await axios.get("http://localhost:3000/fruits");
       console.log("Data from server:", response.data);
-      setList(response.data);
-      return response.data; // Return the data for potential chaining
+
+      getCartItems(response.data);
+      // return response.data; // Return the data for potential chaining
     } catch (error) {
       console.error("Error fetching data from server:", error);
       return []; // Return empty array in case of error
@@ -51,39 +51,41 @@ export function Ecomm() {
 
   function saveCartItems(cartItems) {
     try {
-      const cartData = JSON.stringify(cartItems);
+      let cartData = JSON.stringify(cartItems);
       localStorage.setItem("cartItems", cartData);
     } catch (error) {
       console.error("Error saving cart items:", error);
     }
   }
 
-  async function getCartItems() {
+  async function getCartItems(list) {
     try {
-      const cartData = localStorage.getItem("cartItems");
+      console.log("list in get cart items", list);
+      // Get cart items from local storage
 
-      // Handle empty cart data
-      if (!cartData) {
-        setCartList([]);
-        return;
-      }
+      let cartData = localStorage.getItem("cartItems");
 
-      const cartItems = JSON.parse(cartData);
+      let cartItems = JSON.parse(cartData);
       setCartList(cartItems || []); // Set cart list to empty array if null
       console.log("Cart items from local storage:", cartItems);
 
       // Only update product quantities if we have both products and cart items
+      let updatedList = "";
       if (list.length > 0 && cartItems && cartItems.length > 0) {
-        const updatedList = list.map((p) => {
-          const cartItem = cartItems.find((e) => e.id == p.id);
+        updatedList = list.map((p) => {
+          let cartItem = cartItems.find((e) => e.id == p.id);
           if (cartItem) {
             return { ...p, qty: cartItem.qty };
           }
           return { ...p, qty: 0 };
         });
 
-        setList(updatedList);
         console.log("Updated product list with quantities:", updatedList);
+      }
+      if (updatedList) {
+        setList(updatedList);
+      } else {
+        setList(list);
       }
     } catch (error) {
       console.error("Error getting cart items:", error);
@@ -96,10 +98,10 @@ export function Ecomm() {
     setList((currentList) =>
       currentList.map((p) => {
         if (p.id === product.id) {
-          const updatedProduct = { ...p, qty: 1 };
+          let updatedProduct = { ...p, qty: 1 };
 
           // Update cart list
-          const newCartList = [
+          let newCartList = [
             ...cartList.filter((item) => item.id !== p.id),
             updatedProduct,
           ];
@@ -117,10 +119,10 @@ export function Ecomm() {
     setList((currentList) =>
       currentList.map((p) => {
         if (p.id === product.id) {
-          const updatedProduct = { ...p, qty: p.qty + 1 };
+          let updatedProduct = { ...p, qty: p.qty + 1 };
 
           // Update cart list
-          const existingCartItem = cartList.find((item) => item.id === p.id);
+          let existingCartItem = cartList.find((item) => item.id === p.id);
           let newCartList;
 
           if (existingCartItem) {
@@ -145,8 +147,8 @@ export function Ecomm() {
     setList((currentList) =>
       currentList.map((p) => {
         if (p.id === product.id) {
-          const newQty = Math.max(0, p.qty - 1);
-          const updatedProduct = { ...p, qty: newQty };
+          let newQty = Math.max(0, p.qty - 1);
+          let updatedProduct = { ...p, qty: newQty };
 
           // Update cart list
           let newCartList;
@@ -192,7 +194,7 @@ export function Ecomm() {
 
   function storeUserLogin(user) {
     try {
-      const userData = JSON.stringify(user);
+      let userData = JSON.stringify(user);
       localStorage.setItem("loggedInUser", userData);
     } catch (error) {
       console.error("Error storing user login:", error);
@@ -201,13 +203,13 @@ export function Ecomm() {
 
   async function getLoggedInUser() {
     try {
-      const userData = localStorage.getItem("loggedInUser");
+      let userData = localStorage.getItem("loggedInUser");
 
       if (!userData) {
         return null;
       }
 
-      const user = JSON.parse(userData);
+      let user = JSON.parse(userData);
       console.log("User data fetched from local storage:", user);
 
       if (user) {
@@ -234,6 +236,7 @@ export function Ecomm() {
   function handleAddProduct() {
     console.log("add product clicked");
     setView("addProduct");
+    setAdminView("add");
   }
 
   function handleProductListClick() {
@@ -257,9 +260,17 @@ export function Ecomm() {
   }
 
   function handleProductEditFormSubmit(data) {
-    setList((currentList) =>
-      currentList.map((p) => (p.id === data.id ? data : p))
-    );
+    // setList((currentList) =>
+    //   currentList.map((p) => (p.id === data.id ? data : p))
+    // );
+    let updatedList = list.map((p) => {
+      if (p.id === data.id) {
+        return data; //return updated product if edited
+      } else {
+        return p; //return original product if not edited
+      }
+    });
+    setList(updatedList);
     console.log("data edited by admin", data);
     setView("admin");
   }
@@ -272,6 +283,19 @@ export function Ecomm() {
     setList(data);
     console.log("data added by admin", data);
     setView("admin");
+  }
+
+  function handleUpdateCartList(updatedCart) {
+    let updatedList = list.map((p) => {
+      let cartItem = updatedCart.find((e) => e.id == p.id);
+      if (cartItem) {
+        return { ...p, qty: cartItem.qty };
+      } else {
+        return { ...p, qty: 0 }; //return original product if not in cart
+      }
+    });
+
+    setList(updatedList);
   }
 
   return (
@@ -339,6 +363,7 @@ export function Ecomm() {
             cartList={cartList}
             validUser={validUser}
             setCartList={setCartList}
+            onCartUpdate={handleUpdateCartList}
           />
         </>
       )}

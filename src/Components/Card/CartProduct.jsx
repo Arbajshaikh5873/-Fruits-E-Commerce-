@@ -3,7 +3,7 @@
 // export function CartProduct(props) {
 //   let { product } = props;
 
-//   const discountedPrice = product.mrp - (product.mrp * product.discount) / 100;
+//   let discountedPrice = product.mrp - (product.mrp * product.discount) / 100;
 
 //   return (
 //     <div className="card h-100 shadow-sm border-0 product-card">
@@ -88,11 +88,11 @@
 import React from "react";
 
 export function CartProduct(props) {
-  const { product, index, updateQuantity, isLast } = props;
+  let { product, index, updateQuantity, isLast } = props;
 
   // Calculate discounted price
-  const discountedPrice = product.mrp - (product.mrp * product.discount) / 100;
-  const totalItemPrice = discountedPrice * product.qty;
+  let discountedPrice = product.mrp - (product.mrp * product.discount) / 100;
+  let totalItemPrice = discountedPrice * product.qty;
 
   return (
     <div className="border-bottom p-3">

@@ -4,7 +4,7 @@ export function AdminProduct(props) {
   let { product } = props;
 
   // Calculate discounted price
-  const discountedPrice = product.mrp - (product.mrp * product.discount) / 100;
+  let discountedPrice = product.mrp - (product.mrp * product.discount) / 100;
   // Removed redundant price variable
 
   function handleEditClick() {

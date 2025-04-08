@@ -2,7 +2,7 @@ import React from "react";
 import { AdminProduct } from "./AdminProduct";
 
 export function AdminPage(props) {
-  const { list } = props;
+  let { list } = props;
 
   function handleAddProduct() {
     props.onAddProduct();

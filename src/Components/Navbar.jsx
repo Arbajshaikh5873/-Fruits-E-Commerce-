@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
 export function Navbar(props) {
-  const { cartList } = props;
+  let { cartList } = props;
   let { validUser } = props;
   let { view } = props;
   // let length = validUser.name.length;
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  let [isMenuOpen, setIsMenuOpen] = useState(false);
 
   let total = 0;
   cartList.forEach((item) => {

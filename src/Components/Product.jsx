@@ -16,8 +16,8 @@ export function Product(props) {
   }
 
   // Calculate discounted price
-  const discountedPrice = product.mrp - (product.mrp * product.discount) / 100;
-  const mrp = Number(product.mrp) || 0; // Fallback to 0 if undefined or null
+  let discountedPrice = product.mrp - (product.mrp * product.discount) / 100;
+  let mrp = Number(product.mrp) || 0; // Fallback to 0 if undefined or null
 
   return (
     <div className="card h-100 shadow-sm border-0 product-card">

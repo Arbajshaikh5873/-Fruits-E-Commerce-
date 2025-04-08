@@ -54,6 +54,13 @@
       "email": "arbajshaikh@yopmail.com",
       "password": "12345",
       "role": "user"
+    },
+    {
+      "id": "80f0",
+      "name": "Irfan Shaikh",
+      "email": "irfan@gmail.com",
+      "password": "1234",
+      "role": "user"
     }
   ],
   "fruits": [
@@ -65,17 +72,6 @@
       "mrp": 120,
       "discount": 10,
       "inStock": false,
-      "qty": 0,
-      "type": "Organic"
-    },
-    {
-      "id": "2",
-      "name": "Mango",
-      "image": "mango.jpg",
-      "unit": "doz",
-      "mrp": "500",
-      "discount": "8",
-      "inStock": true,
       "qty": 0,
       "type": "Organic"
     },
@@ -265,6 +261,28 @@
       "inStock": true,
       "qty": 0,
       "type": "Non-Organic"
+    },
+    {
+      "id": "2",
+      "name": "Banana",
+      "image": "banana.jpg",
+      "unit": "pcs",
+      "mrp": "5000",
+      "discount": "8",
+      "inStock": true,
+      "qty": 0,
+      "type": "Organic"
+    },
+    {
+      "id": "61a2",
+      "name": "Mango",
+      "image": "mango.jpg",
+      "unit": "kg",
+      "mrp": "500",
+      "discount": "8",
+      "inStock": true,
+      "qty": 0,
+      "type": "Organic"
     }
   ]
 }

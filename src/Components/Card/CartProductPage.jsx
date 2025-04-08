@@ -45,7 +45,7 @@ export function CartProductPage(props) {
   };
 
   // Update quantity
-  const updateQuantity = (productId, newQty) => {
+  function updateQuantity(productId, newQty) {
     const updatedCart = cartList.map((item) => {
       if (item.id === productId) {
         return { ...item, qty: newQty };
@@ -58,6 +58,7 @@ export function CartProductPage(props) {
 
     // Update cart in parent component
     setCartList(filteredCart);
+    props.onCartUpdate(filteredCart); // Call the parent function to update cart
 
     // Update local storage with consistent key
     try {
@@ -65,7 +66,7 @@ export function CartProductPage(props) {
     } catch (err) {
       console.error("Error saving cart to local storage:", err);
     }
-  };
+  }
 
   // Back to shopping handler
   const handleBackToShopping = () => {

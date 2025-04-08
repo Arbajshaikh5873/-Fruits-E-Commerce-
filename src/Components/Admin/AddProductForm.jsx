@@ -5,7 +5,7 @@ import fieldValidate from "./FormValidation";
 
 function AddProductForm(props) {
   // Default empty product object with new fields
-  const emptyProduct = {
+  let emptyProduct = {
     name: "",
     image: "",
     unit: "kg", // Default unit
@@ -17,15 +17,15 @@ function AddProductForm(props) {
   };
 
   // State variables
-  const [product, setProduct] = useState(emptyProduct); // Current product data
-  const [flagLoader, setFlagLoader] = useState(false); // Loading state for API calls
-  const [flagFormInvalid, setFlagFormInvalid] = useState(false); // Form validation state
+  let [product, setProduct] = useState(emptyProduct); // Current product data
+  let [flagLoader, setFlagLoader] = useState(false); // Loading state for API calls
+  let [flagFormInvalid, setFlagFormInvalid] = useState(false); // Form validation state
 
   // Extract props for better readability
-  const { adminView, onProductListClick } = props;
+  let { adminView, onProductListClick } = props;
 
   // Validation rules and error messages for each field
-  const [errorProduct, setErrorProduct] = useState({
+  let [errorProduct, setErrorProduct] = useState({
     name: { message: "", mxLen: 80, mnLen: 3, onlyDigits: false },
     image: { message: "", mxLen: 200, mnLen: 3, onlyDigits: false },
     unit: { message: "", mxLen: 10, mnLen: 1, onlyDigits: false },
@@ -38,7 +38,7 @@ function AddProductForm(props) {
   // Initialize form based on whether we're adding or editing
   useEffect(() => {
     if (adminView === "edit") {
-      setProduct(props.adminProduct); // Use the provided product for editing
+      setProduct({ ...props.adminProduct, id: props.adminProduct.id }); // Ensure the product includes the id field
     } else if (adminView === "add") {
       setProduct(emptyProduct); // Use empty product for adding new
     }
@@ -51,8 +51,8 @@ function AddProductForm(props) {
 
   // Handle input changes in form fields
   function handleTextChange(event) {
-    const name = event.target.name;
-    const value =
+    let name = event.target.name;
+    let value =
       event.target.type === "checkbox"
         ? event.target.checked
         : event.target.value;
@@ -64,8 +64,8 @@ function AddProductForm(props) {
     if (event.target.type === "checkbox") return;
 
     // Validate the field and update error state
-    const message = fieldValidate(event, errorProduct);
-    const errProduct = { ...errorProduct };
+    let message = fieldValidate(event, errorProduct);
+    let errProduct = { ...errorProduct };
     errProduct[name].message = message;
     setErrorProduct(errProduct);
 
@@ -75,13 +75,13 @@ function AddProductForm(props) {
 
   // Validate field when user leaves it
   function handleBlur(event) {
-    const name = event.target.name;
+    let name = event.target.name;
 
     // Skip validation for checkbox fields
     if (event.target.type === "checkbox") return;
 
-    const message = fieldValidate(event, errorProduct);
-    const errProduct = { ...errorProduct };
+    let message = fieldValidate(event, errorProduct);
+    let errProduct = { ...errorProduct };
     errProduct[name].message = message;
     setErrorProduct(errProduct);
 
@@ -113,8 +113,9 @@ function AddProductForm(props) {
         value = value === "on" ? true : false;
       } else if (key === "qty") {
         value = parseInt(value, 10); // Convert to integer
-        }
+      }
       product[key] = value;
+      product.id = props.adminProduct.id; // Ensure the product includes the id field
     }
 
     if (adminView === "edit") {
@@ -128,7 +129,10 @@ function AddProductForm(props) {
   async function updateBackendProduct(product) {
     try {
       setFlagLoader(true);
-      await axios.put(`http://localhost:3000/fruits/${product.id}`, product);
+      await axios.put(
+        `http://localhost:3000/fruits/${props.adminProduct.id}`,
+        product
+      );
       props.onProductEditFormSubmit(product);
     } catch (error) {
       console.error("Error updating product:", error);
@@ -161,10 +165,7 @@ function AddProductForm(props) {
   async function addToBackendProduct(product) {
     try {
       setFlagLoader(true);
-      const response = await axios.post(
-        "http://localhost:3000/fruits",
-        product
-      );
+      let response = await axios.post("http://localhost:3000/fruits", product);
       console.log("Product added successfully:", response.data);
 
       // Pass the response.data (which should include the new ID) back to parent

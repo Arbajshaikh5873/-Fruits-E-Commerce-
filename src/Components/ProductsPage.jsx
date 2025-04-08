@@ -2,7 +2,7 @@ import React from "react";
 import { Product } from "./Product";
 
 export function ProductsPage(props) {
-  const { list } = props;
+  let { list } = props;
 
   function handleAddToCart(product) {
     props.onAddToCart(product);
