@@ -80,7 +80,10 @@ function Login(props) {
                         <label htmlFor="password" className="form-label">
                           Password
                         </label>
-                        <a href="#" className="text-decoration-none small">
+                        <a
+                          href="#"
+                          className="text-decoration-none small text-danger"
+                        >
                           Forgot password?
                         </a>
                       </div>
@@ -112,7 +115,7 @@ function Login(props) {
                     </div>
 
                     <div className="d-grid gap-2">
-                      <button type="submit" className="btn btn-primary py-2">
+                      <button type="submit" className="btn btn-danger py-2">
                         Login
                       </button>
                     </div>
@@ -121,7 +124,11 @@ function Login(props) {
                   <div className="text-center mt-4">
                     <p className="mb-0">
                       Don't have an account?{" "}
-                      <a href="#" className="text-decoration-none">
+                      <a
+                        href="#"
+                        onClick={() => props.onSignUpLoginClick("SignUp")}
+                        className="text-decoration-none text-danger"
+                      >
                         Sign up
                       </a>
                     </p>

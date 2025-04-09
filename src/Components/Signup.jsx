@@ -83,7 +83,7 @@ export function Signup(props) {
         <div className="row justify-content-center">
           <div className="col-md-8 col-lg-6">
             <div className="card shadow-lg border-0 rounded-lg">
-              <div className="card-header bg-primary text-white text-center py-3">
+              <div className="card-header bg-danger text-white text-center py-3">
                 <h2 className="fw-light mb-0">Create Account</h2>
               </div>
               <div className="card-body p-4 p-md-5">
@@ -164,7 +164,7 @@ export function Signup(props) {
                     />
                     <label className="form-check-label" htmlFor="terms">
                       I agree to the{" "}
-                      <a href="#" className="text-decoration-none">
+                      <a href="#" className="text-decoration-none text-danger">
                         Terms & Conditions
                       </a>
                     </label>
@@ -173,7 +173,7 @@ export function Signup(props) {
                   <div className="d-grid gap-2">
                     <button
                       type="submit"
-                      className="btn btn-primary btn-lg"
+                      className="btn btn-danger btn-lg"
                       // onClick={handleSignupFormSubmit}
                     >
                       Sign Up
@@ -183,7 +183,11 @@ export function Signup(props) {
                   <div className="text-center mt-4">
                     <p>
                       Already have an account?{" "}
-                      <a href="#" className="text-decoration-none">
+                      <a
+                        href="#"
+                        className="text-decoration-none text-danger"
+                        onClick={handleLoginClick}
+                      >
                         Log In
                       </a>
                     </p>

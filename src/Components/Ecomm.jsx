@@ -176,7 +176,12 @@ export function Ecomm() {
     setView(view);
   }
 
-  function handleLoginClick(view) {
+  function handleLoginClick(v) {
+    console.log(`View changed to ${v}`);
+    setView(v);
+  }
+
+  function handleSignUpClick(view) {
     console.log(`View changed to ${view}`);
     setView(view);
   }
@@ -330,7 +335,12 @@ export function Ecomm() {
         </>
       )}
       {view === "SignUp" && <Signup onLoginClick={handleLoginClick} />}
-      {view === "LogIn" && <Login onLoginSuccess={handleLoginSuccess} />}
+      {view === "LogIn" && (
+        <Login
+          onLoginSuccess={handleLoginSuccess}
+          onSignUpLoginClick={handleSignUpClick}
+        />
+      )}
 
       {view === "products" && view !== "admin" && (
         <div>

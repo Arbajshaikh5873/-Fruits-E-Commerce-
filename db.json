@@ -61,6 +61,20 @@
       "email": "irfan@gmail.com",
       "password": "1234",
       "role": "user"
+    },
+    {
+      "id": "6b82",
+      "name": "Sunil Patil",
+      "email": "sunil@gmail.com",
+      "password": "1234",
+      "role": "user"
+    },
+    {
+      "id": "2410",
+      "name": "Ram Gulve",
+      "email": "ram@gmail.com",
+      "password": "1234",
+      "role": "user"
     }
   ],
   "fruits": [
@@ -82,17 +96,6 @@
       "unit": "doz",
       "mrp": "60",
       "discount": "0",
-      "inStock": true,
-      "qty": 0,
-      "type": "Non-Organic"
-    },
-    {
-      "id": "4",
-      "name": "Apple",
-      "image": "apple.jpg",
-      "unit": "kg",
-      "mrp": "200",
-      "discount": 7,
       "inStock": true,
       "qty": 0,
       "type": "Non-Organic"
@@ -283,6 +286,17 @@
       "inStock": true,
       "qty": 0,
       "type": "Organic"
+    },
+    {
+      "id": "4",
+      "name": "Mango",
+      "image": "banana.jpg",
+      "unit": "kg",
+      "mrp": "600",
+      "discount": "10",
+      "inStock": true,
+      "qty": 0,
+      "type": "Regular"
     }
   ]
 }
